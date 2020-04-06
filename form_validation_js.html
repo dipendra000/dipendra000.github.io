@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial scale=1">
+	<title>form validation</title>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<div class="container">
+		<h1 class="text-success text-center"> form validation in JS </h1>
+		<div class="col-lg-9 m-auto d-block">
+
+		<form action="#" onsubmit="return validation()" class="bg-light" >
+			<table class="table">
+
+
+				<div class="form-group">
+					<label>username:</label>
+					<input type="text" name="user" class="form-control" id="user" autocomplete="off" autofocus placeholder="@username">
+					<span id="username" class="text-danger "></span>
+				</div>
+				
+
+				<div class="form-group">
+					<label>password:</label>
+					<input type="text" name="password" class="form-control" id="password" autocomplete="off"  placeholder="ABCD1234">
+					<span id="psw" class="text-danger "></span>
+				</div>
+
+
+				<div class="form-group">
+					<label>confirm password:</label>
+					<input type="password" name="conpass" class="form-control" id="conpassword" placeholder="ABCD1234">
+					<span id="cpsw" class="text-danger "></span>
+					
+				</div>
+
+				<div class="form-group">
+					<label>email:</label>
+					<input type="text" name="email" class="form-control" id="email" autocomplete="off" placeholder="xyz@gmail.com"> 
+					<span id="emaill" class="text-danger "></span>
+					
+				</div>
+
+				<div class="form-group">
+					<label>mobile number:</label>
+					<input type="text" name="mob.number" class="form-control" id="mobnumber" autocomplete="off" placeholder="3456789123">
+					<span id="mobile" class="text-danger "></span>
+					
+				</div>
+
+				<div class="form-group">
+					<label>city:</label>
+					<input type="text" name="user" class="form-control" id="city" autocomplete="off" placeholder="cityname">
+					<span id="citys" class="text-danger "></span>
+				</div>
+
+				<div class="form-group">
+			      	<label>State</label>
+			      	<select class="custom-select" id="state" >
+				        <option selected sisabled value="">Delhi</option>
+				        <option>Gujrat</option>
+				        <option>punjab</option>
+			      </select>
+    			</div>
+
+    			<div class="form-group">
+			      	<label>country</label>
+			      	<select class="custom-select" id="country" >
+				        <option selected sisabled value="">India</option>
+				        <option>USA</option>
+				        <option>Nepal</option>
+				        <option>Canada</option>
+			      </select>
+    			</div>
+
+				<div class="form-group">
+			      <label>Zip</label>
+			      <input type="number" class="form-control" id="zip" placeholder="123456">
+			      <span id="zips" class="text-danger "></span>
+			    </div>
+
+				<div class="form-group">
+			        <input class="form-check-input" type="checkbox" id="autoSizingCheck">
+			        <label class="form-check-label" for="autoSizingCheck">
+			          Remember me
+			        </label>
+			      </div>
+
+
+
+			<input type="submit" name="submit" value="submit" class="btn btn-success">
+
+			</form>
+		</div>
+	</div>
+
+	
+<script type="text/javascript">
+	function validation(){
+
+		var user = document.getElementById('user').value;
+		var password = document.getElementById('password').value;
+		var conpass = document.getElementById('conpassword').value;
+		var email = document.getElementById('email').value;
+		var mobnumber = document.getElementById('mobnumber').value;
+		var zip = document.getElementById('zip').value;
+		var city= document.getElementById('city').value;
+		
+		
+
+			if (user=="" ) 
+			{
+				document.getElementById("username").innerHTML="**please enter the username";
+				return false;
+			}
+			if(user.length<=2 || user.length>20)
+				{
+					document.getElementById("username").innerHTML="**length of username is not valid";
+				return false;
+				}	
+			if(!isNaN(user))
+			{
+				document.getElementById("username").innerHTML="** numbers are not allowed";
+				return false;
+
+			}
+
+
+
+			if (password=="") 
+			{
+				document.getElementById("psw").innerHTML="**please enter the password";
+				return false;
+
+			}
+			if(password.length<=5 || user.length>20)
+				{
+					document.getElementById("psw").innerHTML="**password length must be 5 to 20 ";
+				return false;
+				}
+				
+
+			if (conpass=="") 
+			{
+				document.getElementById("cpsw").innerHTML="** please enter the password again";
+				return false;
+
+			}
+			if(password!==conpass)
+				{
+					document.getElementById("cpsw").innerHTML="**password are not matching ";
+				return false;
+				}
+		
+
+			if (email=="") 
+			{
+				document.getElementById("emaill").innerHTML="**please enter the email";
+				return false;
+			}
+			if(email.indexOf('@')<=0)
+			{
+				document.getElementById("emaill").innerHTML="** @ at invalid position";
+				return false;
+			}
+			if((email.charAt(email.length-4)!='.') && (email.charAt(email.length-3)!='.'))
+			{
+				document.getElementById("emaill").inneHTML="** . at invalid position ";
+				return false;
+			}
+
+
+			if (mobnumber=="") 
+			{
+				document.getElementById("mobile").innerHTML="**please enter the mobilenumber";
+				return false;
+			}
+			if(isNaN(mobnumber))
+			{
+
+				document.getElementById("mobile").innerHTML="**it must contain number only.";
+				return false;
+			}
+			if(mobnumber.length!=10)
+				{
+					document.getElementById("mobile").innerHTML="**it must contain 10 digits  .";
+				return false;
+				}
+
+			if (city=="") 
+				{
+				document.getElementById("citys").innerHTML="**please enter the city name";
+				return false;
+				}
+				
+			if(zip=="")
+			{
+				document.getElementById("zips").innerHTML="**please enter the  zip code  .";
+				return false
+			}
+			if(zip.length<=5|| zip.length>6)
+				{
+					document.getElementById("zips").innerHTML="**please enter the valid zip code";
+				return false;
+				}
+
+
+			
+			
+		}
+
+
+</script>
+</body>
+</html>
